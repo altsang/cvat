@@ -14,9 +14,9 @@ docker build -t cvat.openvino.base "$SCRIPT_DIR/openvino/base"
 
 nuctl create project cvat --platform local
 
-#shopt -s globstar - this isn't needed for zsh only bash
+shopt -s globstar
 
-for func_config in "$FUNCTIONS_DIR"/function.yaml
+for func_config in "$FUNCTIONS_DIR"/**/function.yaml
 do
     func_root="$(dirname "$func_config")"
     func_rel_path="$(grealpath --relative-to="$SCRIPT_DIR" "$(dirname "$func_root")")"
